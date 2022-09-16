@@ -1,0 +1,4 @@
+/.ipynb_checkpoints
+./loanpy/__pycache__/
+
+loanpy/__pycache__

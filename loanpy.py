@@ -1,6 +1,7 @@
 # TODO: better styling
 from loanpy import home, car, welcome
 
+import tensorflow as tf
 import tkinter as tk
 
 root = tk.Tk()
@@ -17,20 +18,25 @@ main_frame.pack(expand=True)
 welcomepage = welcome.Welcome(main_frame)
 welcomepage.frame.pack()
 
+outputpage = tk.Frame(main_frame, bg="#11121d")
+tk.Label(outputpage, text="here is the output!").pack()
+
 pages = [carpage.frame, homepage.frame]
 
-def submit():
-    print(homepage.get_data())
-
-count = 0
 def set_page(f: tk.Frame):
     # if f.winfo_id() != homepage.frame.winfo_id():
-    global count
     submit_button.forget()
     welcomepage.frame.forget()
     for p in pages: p.forget()
     f.pack()
     submit_button.pack(side=tk.BOTTOM)
+
+def submit():
+    set_page(outputpage)
+    nice = homepage.get_data()
+    model = tf.keras.models.load_model('newmodel.h5')
+    model.predict([nice])
+    print("Y" if model > 0.5 else "N")
 
 bottom = tk.Frame(root)
 submit_button = tk.Button(bottom, text="Submit", command=submit, fg="green")
