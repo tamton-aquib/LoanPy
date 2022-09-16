@@ -1,5 +1,6 @@
 import tkinter as tk
 import pandas as pd
+import numpy as np
 
 class HomeLoan:
     def __init__(self, main_frame) -> None:
@@ -33,9 +34,9 @@ class HomeLoan:
 
         # TODO: clear up
         tk.Label(self.frame, text="Property Area").pack()
-        tk.Radiobutton(self.frame, text='Rural').pack()
-        tk.Radiobutton(self.frame, text='Urban').pack()
-        tk.Radiobutton(self.frame, text='SemiUrban').pack()
+        tk.Radiobutton(self.frame, text='Rural', state=tk.DISABLED).pack()
+        tk.Radiobutton(self.frame, text='Urban', state=tk.DISABLED).pack()
+        tk.Radiobutton(self.frame, text='SemiUrban', state=tk.DISABLED).pack()
 
         # tk.Button(self.frame, text="Submit", command=self.submit).pack()
 
@@ -47,17 +48,17 @@ class HomeLoan:
         stuff = {
             "gender": 1,
             "married": 1,
-            "dependants": self.dependants.get(),
-            "education": self.education.get(),
-            "self_employed": self.self_employed.get(),
-            "applicant_income": self.applicant_income.get(),
-            "coapplicant_income": self.coapplicant_income.get(),
-            "loan_amount": loan_amount,
-            "loan_amount_term": loan_amount_term,
-            "credit_history": self.credit_history.get(),
+            "dependants": np.int64(self.dependants.get()),
+            "education": np.int64(self.education.get()),
+            "self_employed": np.int64(self.self_employed.get()),
+            "applicant_income": np.float64(self.applicant_income.get()),
+            "coapplicant_income": np.float64(self.coapplicant_income.get()),
+            "loan_amount": np.float64(loan_amount),
+            "loan_amount_term": np.float64(loan_amount_term),
+            "credit_history": np.int64(self.credit_history.get()),
             "property_area": 0,
-            "total_income": self.applicant_income.get() + self.coapplicant_income.get(),
-            "EMI": loan_amount * r * ((1+r) ** loan_amount_term) / ((1+r) ** (loan_amount_term - 1))
+            "total_income": np.float64(self.applicant_income.get() + self.coapplicant_income.get()),
+            "EMI": np.float64(loan_amount * r * ((1+r) ** loan_amount_term) / ((1+r) ** (loan_amount_term - 1)))
         }
 
         data = pd.read_csv('preprocesseddata.csv')

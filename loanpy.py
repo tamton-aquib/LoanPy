@@ -18,13 +18,11 @@ main_frame.pack(expand=True)
 welcomepage = welcome.Welcome(main_frame)
 welcomepage.frame.pack()
 
-outputpage = tk.Frame(main_frame, bg="#11121d")
-tk.Label(outputpage, text="here is the output!").pack()
+outputpage = tk.Frame(main_frame)
 
 pages = [carpage.frame, homepage.frame]
 
 def set_page(f: tk.Frame):
-    # if f.winfo_id() != homepage.frame.winfo_id():
     submit_button.forget()
     welcomepage.frame.forget()
     for p in pages: p.forget()
@@ -35,8 +33,9 @@ def submit():
     set_page(outputpage)
     nice = homepage.get_data()
     model = tf.keras.models.load_model('newmodel.h5')
-    model.predict([nice])
-    print("Y" if model > 0.5 else "N")
+    value = model.predict([list(nice.values())])[0][0]
+    value_output = "Yes" if value > 0.5 else "No"
+    tk.Label(outputpage, text=f"here is the output: {value_output}!").pack()
 
 bottom = tk.Frame(root)
 submit_button = tk.Button(bottom, text="Submit", command=submit, fg="green")
