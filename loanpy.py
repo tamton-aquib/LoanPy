@@ -1,7 +1,10 @@
 # TODO: better styling
 from loanpy import home, car, welcome
+from threading import Thread
 
-import tensorflow as tf
+def importing():
+    import tensorflow as tf
+
 import tkinter as tk
 
 root = tk.Tk()
@@ -45,4 +48,5 @@ home_button = tk.Button(bottom, text="Home Loan", command=lambda: set_page(homep
 home_button.pack(side=tk.RIGHT, padx=10)
 bottom.pack(side=tk.BOTTOM)
 
+Thread(target=importing).start()
 root.mainloop()
