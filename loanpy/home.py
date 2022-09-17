@@ -6,7 +6,7 @@ class HomeLoan:
     def __init__(self, main_frame) -> None:
         self.frame = tk.Frame(main_frame)
 
-        tk.Label(self.frame, text="Home Loan", bg="red", font=(None, 12)).pack()
+        tk.Label(self.frame, text="Home Loan", fg="green", font=(None, 12)).pack()
 
         tk.Label(self.frame, text="Applicant Income").pack()
         self.applicant_income = tk.Entry(self.frame); self.applicant_income.pack()
@@ -33,10 +33,10 @@ class HomeLoan:
         tk.Checkbutton(self.frame, text="Self Employed", variable=self.self_employed).pack()
 
         # TODO: clear up
-        tk.Label(self.frame, text="Property Area").pack()
-        tk.Radiobutton(self.frame, text='Rural', state=tk.DISABLED).pack()
-        tk.Radiobutton(self.frame, text='Urban', state=tk.DISABLED).pack()
-        tk.Radiobutton(self.frame, text='SemiUrban', state=tk.DISABLED).pack()
+        # tk.Label(self.frame, text="Property Area").pack()
+        # tk.Radiobutton(self.frame, text='Rural', state=tk.DISABLED).pack()
+        # tk.Radiobutton(self.frame, text='Urban', state=tk.DISABLED).pack()
+        # tk.Radiobutton(self.frame, text='SemiUrban', state=tk.DISABLED).pack()
 
         # tk.Button(self.frame, text="Submit", command=self.submit).pack()
 
