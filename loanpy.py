@@ -35,7 +35,7 @@ def submit():
     nice = homepage.get_data()
     model = tf.keras.models.load_model('newmodel.h5')
     value = model.predict([list(nice.values())])[0][0]
-    value_output = "Your loan has been approved" if value > 0.6 else "Sorry! your loan was rejected"
+    value_output = "Your loan has been approved" if value > 0.5 else "Sorry! your loan was rejected"
     output_label.configure(text=f"Application status: {value_output}!")
 
 bottom = tk.Frame(root)

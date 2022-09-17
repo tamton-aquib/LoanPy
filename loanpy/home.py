@@ -6,7 +6,7 @@ class HomeLoan:
     def __init__(self, main_frame) -> None:
         self.frame = tk.Frame(main_frame)
 
-        tk.Label(self.frame, text="Home Loan", fg="green", font=(None, 12)).pack()
+        tk.Label(self.frame, text="Home Loan", fg="green", font=(None, 16)).pack()
 
         tk.Label(self.frame, text="Applicant Income").pack()
         self.applicant_income = tk.Entry(self.frame); self.applicant_income.pack()
