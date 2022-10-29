@@ -6,7 +6,7 @@ class HomeLoan:
     def __init__(self, main_frame) -> None:
         self.frame = tk.Frame(main_frame)
 
-        tk.Label(self.frame, text="Home Loan", fg="green", font=(None, 16)).pack()
+        tk.Label(self.frame, text="Home Loan", fg="blue", font=(None, 16)).pack()
 
         tk.Label(self.frame, text="Applicant Income").pack()
         self.applicant_income = tk.Entry(self.frame); self.applicant_income.pack()
@@ -45,7 +45,7 @@ class HomeLoan:
         r = 0.00833
         loan_amount = float(self.loan_amount.get())
         loan_amount_term = float(self.loan_amount_term.get())
-        stuff = {
+        attributes = {
             "gender": 1,
             "married": 1,
             "dependants": np.int64(self.dependants.get()),
@@ -63,13 +63,13 @@ class HomeLoan:
 
         data = pd.read_csv('preprocesseddata.csv')
 
-        stuff["applicant_income"] = (stuff['applicant_income'] - data["ApplicantIncome"].min()) / (data["ApplicantIncome"].max() - data["ApplicantIncome"].min())
-        stuff["loan_amount"] = (stuff["loan_amount"] - data["LoanAmount"].min()) / (data["LoanAmount"].max() - data["LoanAmount"].min())
-        stuff["coapplicant_income"] = (stuff["coapplicant_income"] - data["CoapplicantIncome"].min()) / (data["CoapplicantIncome"].max() - data["CoapplicantIncome"].min())
-        stuff["property_area"] = (stuff["property_area"] - data["Property_Area"].min()) / (data["Property_Area"].max() - data["Property_Area"].min())
-        stuff["loan_amount_term"] = (stuff["loan_amount_term"] - data["Loan_Amount_Term"].min()) / (data["Loan_Amount_Term"].max() - data["Loan_Amount_Term"].min())
-        stuff["total_income"] = (stuff["total_income"] - data["TotalIncome"].min()) / (data["TotalIncome"].max() - data["TotalIncome"].min())
-        stuff["EMI"] = (stuff["EMI"] - data["EMI"].min()) / (data["EMI"].max() - data["EMI"].min())
+        attributes["applicant_income"] = (attributes['applicant_income'] - data["ApplicantIncome"].min()) / (data["ApplicantIncome"].max() - data["ApplicantIncome"].min())
+        attributes["loan_amount"] = (attributes["loan_amount"] - data["LoanAmount"].min()) / (data["LoanAmount"].max() - data["LoanAmount"].min())
+        attributes["coapplicant_income"] = (attributes["coapplicant_income"] - data["CoapplicantIncome"].min()) / (data["CoapplicantIncome"].max() - data["CoapplicantIncome"].min())
+        attributes["property_area"] = (attributes["property_area"] - data["Property_Area"].min()) / (data["Property_Area"].max() - data["Property_Area"].min())
+        attributes["loan_amount_term"] = (attributes["loan_amount_term"] - data["Loan_Amount_Term"].min()) / (data["Loan_Amount_Term"].max() - data["Loan_Amount_Term"].min())
+        attributes["total_income"] = (attributes["total_income"] - data["TotalIncome"].min()) / (data["TotalIncome"].max() - data["TotalIncome"].min())
+        attributes["EMI"] = (attributes["EMI"] - data["EMI"].min()) / (data["EMI"].max() - data["EMI"].min())
 
-        return stuff
+        return attributes
 
